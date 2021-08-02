@@ -28,7 +28,7 @@ class TestWebsiteSaleCouponAutorefresh(common.SavepointCase):
         )
         cls.product = cls.env["product.product"].create({"name": "Test"})
         coupon_program_form = Form(
-            cls.env["sale.coupon.program"],
+            cls.env["coupon.program"],
             view="sale_coupon.sale_coupon_program_view_promo_program_form",
         )
         coupon_program_form.name = "Test Discount Program"
