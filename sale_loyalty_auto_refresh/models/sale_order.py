@@ -2,7 +2,11 @@
 # Copyright 2021 Camptocamp - Silvio Gregorini
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import logging
+
 from odoo import api, fields, models
+
+logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -40,10 +44,23 @@ class SaleOrder(models.Model):
         return res
 
     def _auto_refresh_coupons(self):
-        orders = self.filtered(type(self)._allow_recompute_coupon_lines)
-        if orders:
-            orders = orders.with_context(skip_auto_refresh_coupons=True)
-            orders.recompute_coupon_lines()
+        orders = self.with_context(skip_auto_refresh_coupons=True).filtered(
+            type(self)._allow_recompute_coupon_lines
+        )
+        for order in orders:
+            order._update_programs_and_rewards()
+            order.action_apply_rewards()
+
+    def action_apply_rewards(self):
+        self.ensure_one()
+        claimable_rewards = self._get_claimable_rewards()
+        for coupon, reward in claimable_rewards.items():
+            try:
+                self._apply_program_reward(reward, coupon)
+                self._update_programs_and_rewards()
+            except Exception as e:
+                # Ignore exception errors to unblock the user when creating/writing
+                logger.debug(e)
 
     def _allow_recompute_coupon_lines(self):
         """Returns whether reward lines in order ``self`` can be recomputed
@@ -67,6 +84,16 @@ class SaleOrder(models.Model):
             }
         )
         return triggers
+
+    def action_open_reward_wizard(self):
+        return super(
+            SaleOrder, self.with_context(skip_auto_refresh_coupons=True)
+        ).action_open_reward_wizard()
+
+    def _update_programs_and_rewards(self):
+        return super(
+            SaleOrder, self.with_context(skip_auto_refresh_coupons=True)
+        )._update_programs_and_rewards()
 
 
 class SaleOrderLine(models.Model):
