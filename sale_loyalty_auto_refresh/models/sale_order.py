@@ -42,8 +42,7 @@ class SaleOrder(models.Model):
     def _auto_refresh_coupons(self):
         orders = self.filtered(type(self)._allow_recompute_coupon_lines)
         if orders:
-            orders = orders.with_context(skip_auto_refresh_coupons=True)
-            orders.recompute_coupon_lines()
+            orders.action_open_reward_wizard()
 
     def _allow_recompute_coupon_lines(self):
         """Returns whether reward lines in order ``self`` can be recomputed
@@ -67,6 +66,16 @@ class SaleOrder(models.Model):
             }
         )
         return triggers
+
+    def action_open_reward_wizard(self):
+        return super(
+            SaleOrder, self.with_context(skip_auto_refresh_coupons=True)
+        ).action_open_reward_wizard()
+
+    def _update_programs_and_rewards(self):
+        return super(
+            SaleOrder, self.with_context(skip_auto_refresh_coupons=True)
+        )._update_programs_and_rewards()
 
 
 class SaleOrderLine(models.Model):
