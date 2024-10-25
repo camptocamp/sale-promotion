@@ -10,6 +10,9 @@
     "license": "AGPL-3",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-promotion",
-    "depends": ["sale_coupon"],
-    "data": ["views/coupon_program_view.xml"],
+    "depends": ["sale_loyalty"],
+    "data": [
+        "views/loyalty_program.xml",
+        "views/loyalty_rule.xml",
+    ],
 }
