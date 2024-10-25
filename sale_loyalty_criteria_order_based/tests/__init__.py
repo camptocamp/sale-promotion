@@ -1,1 +1,1 @@
-from . import test_sale_coupon_criteria_order_based
+from . import test_methods

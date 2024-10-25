@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="loyalty_rule_view_form" model="ir.ui.view">
+      <field name="name">loyalty.rule.form.inherit</field>
+      <field name="model">loyalty.rule</field>
+      <field name="inherit_id" ref="loyalty.loyalty_rule_view_form" />
+      <field name="arch" type="xml">
+          <field name="product_domain" position="after">
+            <field
+                    name="rule_order_domain"
+                    groups="base.group_no_one"
+                    widget="domain"
+                    options="{'model': 'sale.order', 'in_dialog': true}"
+                />
+          </field>
+      </field>
+    </record>
+
+</odoo>
