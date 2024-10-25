@@ -17,10 +17,10 @@ Sales Coupon based on Sales Order values
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--promotion-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-promotion/tree/17.0/sale_coupon_criteria_order_based
+    :target: https://github.com/OCA/sale-promotion/tree/17.0/sale_loyalty_criteria_order_based
     :alt: OCA/sale-promotion
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-promotion-17-0/sale-promotion-17-0-sale_coupon_criteria_order_based
+    :target: https://translation.odoo-community.org/projects/sale-promotion-17-0/sale-promotion-17-0-sale_loyalty_criteria_order_based
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
     :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-promotion&target_branch=17.0
@@ -28,10 +28,10 @@ Sales Coupon based on Sales Order values
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds an option to configure your coupon conditions based on
-the Sales Order values.
+This module adds an option to configure your **Loyalty Program** and add
+additional constraints based on **Sales Order** values.
 
-Example: "If Sales Team is 'Europe' apply the following discount'
+Example: "If Sales Team is 'Europe' grant one point for the program"
 
 **Table of contents**
 
@@ -41,13 +41,18 @@ Example: "If Sales Team is 'Europe' apply the following discount'
 Usage
 =====
 
-Open or create a new Promotion Program in the **Sales/Products/Promotion
-Programs** menu.
+Open or create a new Loyalty Program in the **Sales/Products/Discount &
+Loyalty** menu.
 
-In *Conditions* section the following new option is available:
+There's two ways to add a condition based on orders:
 
-- **Based on Order** configure an order-based domain to apply the
-  promotion
+- On the program itself, allowing to define ``global`` conditions (valid
+  for all rules)
+  → Find and edit the **Based on Order** field on the **Loyalty
+  Program** form view.
+- On the rule, allowing to define conditions valid for a given rule only
+  → Open or create a new **Loyalty Rule**, and edit the **Based on
+  Order** field.
 
 Bug Tracker
 ===========
@@ -55,7 +60,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-promotion/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-promotion/issues/new?body=module:%20sale_coupon_criteria_order_based%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-promotion/issues/new?body=module:%20sale_loyalty_criteria_order_based%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -77,6 +82,8 @@ Contributors
 
   - Pilar Vargas
 
+- MmeQuignon <matthieu.mequignon@camptocamp.com>
+
 Maintainers
 -----------
 
@@ -90,6 +97,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-promotion <https://github.com/OCA/sale-promotion/tree/17.0/sale_coupon_criteria_order_based>`_ project on GitHub.
+This module is part of the `OCA/sale-promotion <https://github.com/OCA/sale-promotion/tree/17.0/sale_loyalty_criteria_order_based>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

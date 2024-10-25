@@ -1,7 +1,7 @@
-Open or create a new Promotion Program in the **Sales/Products/Promotion
-Programs** menu.
+Open or create a new Loyalty Program in the **Sales/Products/Discount & Loyalty** menu.
 
-In *Conditions* section the following new option is available:
-
-- **Based on Order** configure an order-based domain to apply the
-  promotion
+There's two ways to add a condition based on orders:
+- On the program itself, allowing to define `global` conditions (valid for all rules)\
+  &rarr; Find and edit the **Based on Order** field on the **Loyalty Program** form view.
+- On the rule, allowing to define conditions valid for a given rule only\
+  &rarr; Open or create a new **Loyalty Rule**, and edit the **Based on Order** field.
