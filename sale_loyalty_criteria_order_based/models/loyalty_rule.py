@@ -18,6 +18,8 @@ class LoyaltyRule(models.Model):
     def _constrain_rule_order_domain(self):
         model = self.env["sale.order"]
         for rule in self:
+            if not rule.rule_order_domain:
+                continue
             try:
                 domain = ast.literal_eval(rule.rule_order_domain)
                 # Ensuring that domain is valid for sale.order
