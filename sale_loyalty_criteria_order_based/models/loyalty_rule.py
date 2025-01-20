@@ -31,7 +31,8 @@ class LoyaltyRule(models.Model):
         """Check that we can apply the rule on current order"""
         self.ensure_one()
         order.ensure_one()
-        domain = ast.literal_eval(self.rule_order_domain)
-        if domain:
-            return bool(order.filtered_domain(domain))
+        if self.rule_order_domain:
+            domain = ast.literal_eval(self.rule_order_domain)
+            if domain:
+                return bool(order.filtered_domain(domain))
         return True
